@@ -802,7 +802,7 @@ def main():
                     print("gen_loss_L1", results["gen_loss_L1"])
 
                 if should(a.save_freq):
-                    print("saving model")
+                    print("################## SAVING MODEL ##############")
                     saver.save(sess, os.path.join(a.output_dir, "model"), global_step=sv.global_step)
 
                     current_discrim_loss = results["discrim_loss"]
