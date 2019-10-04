@@ -775,7 +775,7 @@ def main():
                 if should(a.display_freq):
                     fetches["display"] = display_fetches
 
-                if should(a.save_freq):
+                if should(a.summary_freq):
                     current_discrim_loss = results["discrim_loss"]
                     print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (current_discrim_loss, discrim_loss_prev))
                     if current_discrim_loss > discrim_loss_prev:
