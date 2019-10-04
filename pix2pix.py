@@ -779,12 +779,12 @@ def main():
                     print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (model.discrim_loss, discrim_loss_prev))
                     if model.discrim_loss > discrim_loss_prev:
                         a.lr -= 0.0001
-                        print("new learning rate %0.8f" % a.lr)
+                        print("should update learning rate %0.8f" % a.lr)
 
                     print("saving prev loss %0.8f" % model.discrim_loss)
                     discrim_loss_prev = model.discrim_loss
 
-                results = sess.run(fetches, options=options, run_metadata=run_metadata, feed_dict = {'learning_rate': a.lr})
+                results = sess.run(fetches, options=options, run_metadata=run_metadata)
 
                 if should(a.summary_freq):
                     print("recording summary")
