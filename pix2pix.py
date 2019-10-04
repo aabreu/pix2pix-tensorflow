@@ -776,13 +776,14 @@ def main():
                     fetches["display"] = display_fetches
 
                 if should(a.save_freq):
-                    print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (model.discrim_loss, discrim_loss_prev))
-                    if model.discrim_loss > discrim_loss_prev:
+                    current_discrim_loss = results["discrim_loss"]
+                    print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (current_discrim_loss, discrim_loss_prev))
+                    if current_discrim_loss > discrim_loss_prev:
                         a.lr -= 0.0001
                         print("should update learning rate %0.8f" % a.lr)
 
-                    print("saving prev loss %0.8f" % model.discrim_loss)
-                    discrim_loss_prev = model.discrim_loss
+                    print("saving prev loss %0.8f" % current_discrim_loss)
+                    discrim_loss_prev = current_discrim_loss
 
                 results = sess.run(fetches, options=options, run_metadata=run_metadata)
 
