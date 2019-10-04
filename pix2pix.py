@@ -805,15 +805,12 @@ def main():
                     print("saving model")
                     saver.save(sess, os.path.join(a.output_dir, "model"), global_step=sv.global_step)
 
-                if should(100):
                     current_discrim_loss = results["discrim_loss"]
-                    print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (current_discrim_loss, discrim_loss_prev))
                     if current_discrim_loss > discrim_loss_prev:
-                        a.lr -= 0.0001
-                        print("should update learning rate %0.8f" % a.lr)
+                        print("######## DISCRIMINATOR LOSS NOT IMPROVED ####### %0.8f" % current_discrim_loss)
 
-                    print("saving prev loss %0.8f" % current_discrim_loss)
                     discrim_loss_prev = current_discrim_loss
+
 
 
                 if sv.should_stop():
