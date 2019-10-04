@@ -784,7 +784,7 @@ def main():
                     print("saving prev loss %0.8f" % model.discrim_loss)
                     discrim_loss_prev = model.discrim_loss
 
-                results = sess.run(fetches, options=options, run_metadata=run_metadata, feed_dict = {learning_rate: a.lr})
+                results = sess.run(fetches, options=options, run_metadata=run_metadata, feed_dict = {'learning_rate': a.lr})
 
                 if should(a.summary_freq):
                     print("recording summary")
