@@ -807,9 +807,10 @@ def main():
 
                     current_discrim_loss = results["discrim_loss"]
                     if current_discrim_loss > discrim_loss_prev:
-                        print("######## DISCRIMINATOR LOSS NOT IMPROVED ####### %0.8f" % current_discrim_loss)
-
-                    discrim_loss_prev = current_discrim_loss
+                        print("######## DISCRIMINATOR LOSS *****NOT***** IMPROVED ####### %0.8f" % current_discrim_loss)
+                    else:
+                        print("######## DISCRIMINATOR IMPROVED ####### %0.8f" % current_discrim_loss)
+                        discrim_loss_prev = current_discrim_loss
 
 
 
