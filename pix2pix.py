@@ -775,16 +775,6 @@ def main():
                 if should(a.display_freq):
                     fetches["display"] = display_fetches
 
-                if should(a.summary_freq):
-                    current_discrim_loss = results["discrim_loss"]
-                    print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (current_discrim_loss, discrim_loss_prev))
-                    if current_discrim_loss > discrim_loss_prev:
-                        a.lr -= 0.0001
-                        print("should update learning rate %0.8f" % a.lr)
-
-                    print("saving prev loss %0.8f" % current_discrim_loss)
-                    discrim_loss_prev = current_discrim_loss
-
                 results = sess.run(fetches, options=options, run_metadata=run_metadata)
 
                 if should(a.summary_freq):
@@ -814,6 +804,17 @@ def main():
                 if should(a.save_freq):
                     print("saving model")
                     saver.save(sess, os.path.join(a.output_dir, "model"), global_step=sv.global_step)
+
+                if should(100):
+                    current_discrim_loss = results["discrim_loss"]
+                    print("### CHECKING DISC. LOSS %0.8f / %0.8f ###" % (current_discrim_loss, discrim_loss_prev))
+                    if current_discrim_loss > discrim_loss_prev:
+                        a.lr -= 0.0001
+                        print("should update learning rate %0.8f" % a.lr)
+
+                    print("saving prev loss %0.8f" % current_discrim_loss)
+                    discrim_loss_prev = current_discrim_loss
+
 
                 if sv.should_stop():
                     break
